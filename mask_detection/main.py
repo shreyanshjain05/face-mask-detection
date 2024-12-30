@@ -2,8 +2,10 @@ import numpy as np
 import streamlit as st
 from tensorflow.keras.models import load_model
 from PIL import Image
-model = load_model('trained_model/model.h5')
-def image_preprocess(input_image_path):
+import os
+working_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = f'{working_dir}/trained_model/model.h5'
+model = load_model(model_path)def image_preprocess(input_image_path):
     input_image = Image.open(input_image_path)
     image_resize = input_image.resize((128,128))
     image_scaled = np.array(image_resize)/255.0
